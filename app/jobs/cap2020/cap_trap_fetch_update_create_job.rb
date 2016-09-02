@@ -1,5 +1,5 @@
 module Cap2020
-  class CapTrapCheckSuccessJob < ActiveJob::Base
+  class CapTrapFetchUpdateCreateJob < ActiveJob::Base
     queue_as :default
 
     def perform
@@ -14,10 +14,11 @@ module Cap2020
           new_traps = traps.select { |trap| missing_sensors_euid.include? trap[:id] }
           new_traps.each do |new_trap|
             Sensor.create!(
-              name: "CapTrap #{new_trap[:number]}",
+              name: "CapTrap #{new_trap[:number]}-#{new_trap[:sigfox_id]}",
               vendor_euid: :cap2020,
               model_euid: :cap_trap,
-              euid: new_trap[:id]
+              euid: new_trap[:id],
+              retrieval_mode: :integration
             )
           end
           matching_sensors = Sensor
@@ -37,7 +38,7 @@ module Cap2020
               # nature: :cap_trap_analysis,
               nature: :sensor_analysis,
               geolocation: trap[:location],
-              sampling_temporal_mode: :day,
+              sampling_temporal_mode: :period,
               items_attributes: retrieved_data
             )
           end

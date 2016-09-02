@@ -3,7 +3,7 @@ module Cap2020
     auth :check do
       parameter :api_key
     end
-    calls :fetch_all
+    calls :fetch_all, :debug
 
     def fetch_all
       integration = fetch
@@ -14,6 +14,7 @@ module Cap2020
             .map do |trap|
               {
                 id: trap[:properties][:id],
+                sigfox_id: trap[:properties][:id_sigfox],
                 number: trap[:properties][:num_piege],
                 pest_variety: trap[:properties][:ravageur],
                 total_count: trap[:comptage][:total_ravageur].to_i,
@@ -29,6 +30,13 @@ module Cap2020
         r.error do
           Rails.logger.info 'What the fuck brah?'.red
         end
+      end
+    end
+
+    def debug
+      integration = fetch
+      get_json("http://sd-89062.dedibox.fr/Pieges/api/api_geojson.php?app_key=#{integration.parameters['api_key']}&id_rav=0&type_piege=captrap") do |r|
+        byebug
       end
     end
 
