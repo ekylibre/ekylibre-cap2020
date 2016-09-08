@@ -1,0 +1,5 @@
+eng:
+  labels:
+    cap_trap_short_description: Pest trap
+    cap_trap_long_description:  CapTrap is an automated moth trap whose data can be used in Ekylibre.
+    cap_trap_url: http://sd-71360.dedibox.fr/wordpress/
