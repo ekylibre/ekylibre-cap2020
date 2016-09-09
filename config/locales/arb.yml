@@ -1,0 +1,9 @@
+---
+arb:
+  labels:
+    cap_trap_short_description: "فخ الآفات"
+    cap_trap_long_description: CapTrap هو فخ العث الآلي التي يمكن استخدامها في Ekylibre
+      البيانات.
+  integrations:
+    cap_trap:
+      api_key: "مفتاح API"

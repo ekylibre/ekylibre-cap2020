@@ -1,0 +1,10 @@
+---
+spa:
+  labels:
+    cap_trap_short_description: Trampa del parásito
+    cap_trap_long_description: CapTrap es una trampa de la polilla automatizado cuyos
+      datos pueden ser utilizados en Ekylibre.
+    cap_trap_url: http://sd-71360.dedibox.fr/wordpress/
+  integrations:
+    cap_trap:
+      api_key: Clave API

@@ -1,0 +1,8 @@
+---
+cmn:
+  labels:
+    cap_trap_short_description: "害虫陷阱"
+    cap_trap_long_description: CapTrap是一个自动化蛾陷阱，其数据可在Ekylibre使用。
+  integrations:
+    cap_trap:
+      api_key: API密钥

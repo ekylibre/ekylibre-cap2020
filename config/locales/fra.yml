@@ -1,5 +1,10 @@
+---
 fra:
   labels:
     cap_trap_short_description: Piège à noctuelles
-    cap_trap_long_description:  CapTrap est un piège à noctuelles connecté qui remonte ses données dans Ekylibre.
+    cap_trap_long_description: CapTrap est un piège à noctuelles connecté qui remonte
+      ses données dans Ekylibre.
     cap_trap_url: http://sd-71360.dedibox.fr/wordpress/
+  integrations:
+    cap_trap:
+      api_key: Clé d'API

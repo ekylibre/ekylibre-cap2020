@@ -1,0 +1,10 @@
+---
+por:
+  labels:
+    cap_trap_short_description: Armadilha de pragas
+    cap_trap_long_description: CapTrap é uma armadilha traça automatizado cujos dados
+      podem ser usados ​​em Ekylibre.
+    cap_trap_url: http://sd-71360.dedibox.fr/wordpress/
+  integrations:
+    cap_trap:
+      api_key: Chave de API

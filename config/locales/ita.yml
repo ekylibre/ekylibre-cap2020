@@ -1,0 +1,10 @@
+---
+ita:
+  labels:
+    cap_trap_short_description: Pest trappola
+    cap_trap_long_description: CapTrap è una trappola falena automatizzato i cui dati
+      possono essere utilizzati in Ekylibre.
+    cap_trap_url: http://sd-71360.dedibox.fr/wordpress/
+  integrations:
+    cap_trap:
+      api_key: Chiave API

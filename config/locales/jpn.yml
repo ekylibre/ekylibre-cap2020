@@ -1,0 +1,8 @@
+---
+jpn:
+  labels:
+    cap_trap_short_description: "ペストトラップ"
+    cap_trap_long_description: CapTrapは、そのデータEkylibreで使用することができる自動化された蛾のトラップです。
+  integrations:
+    cap_trap:
+      api_key: APIキー

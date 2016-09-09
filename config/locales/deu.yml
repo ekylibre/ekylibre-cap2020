@@ -1,0 +1,10 @@
+---
+deu:
+  labels:
+    cap_trap_short_description: Schädlingsfalle
+    cap_trap_long_description: CapTrap ist eine automatisierte Mottenfalle, dessen
+      Daten in Ekylibre verwendet werden.
+    cap_trap_url: http://sd-71360.dedibox.fr/wordpress/
+  integrations:
+    cap_trap:
+      api_key: API-Schlüssel
