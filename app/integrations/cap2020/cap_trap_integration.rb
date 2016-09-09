@@ -35,8 +35,7 @@ module Cap2020
 
     def debug
       integration = fetch
-      get_json("http://sd-89062.dedibox.fr/Pieges/api/api_geojson.php?app_key=#{integration.parameters['api_key']}&id_rav=0&type_piege=captrap") do |r|
-        byebug
+      get_json("http://sd-89062.dedibox.fr/Pieges/api/api_geojson.php?app_key=#{integration.parameters['api_key']}&id_rav=0&type_piege=captrap") do |_r|
       end
     end
 
@@ -49,6 +48,5 @@ module Cap2020
         end
       end
     end
-
   end
 end
