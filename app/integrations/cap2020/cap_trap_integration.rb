@@ -9,7 +9,8 @@ module Cap2020
       integration = fetch
       get_json("http://sd-89062.dedibox.fr/Pieges/api/api_geojson.php?app_key=#{integration.parameters['api_key']}&id_rav=0&type_piege=captrap") do |r|
         r.success do
-          JSON(r.body)
+          body = JSON(r.body)
+          body
             .with_indifferent_access[:features] # Get list of traps
             .map do |trap|
               {
@@ -18,7 +19,9 @@ module Cap2020
                 number: trap[:properties][:num_piege],
                 pest_variety: trap[:properties][:ravageur],
                 total_count: trap[:comptage][:total_ravageur].to_i,
-                location: trap[:geometry]
+                last_count: trap[:comptage][:comptage_nuit].to_i,
+                location: trap[:geometry],
+                link: body["lien"]
               }
             end
         end
