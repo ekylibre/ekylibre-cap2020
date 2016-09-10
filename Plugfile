@@ -2,5 +2,5 @@
 author 'Jérémie Bonal <jbonal@ekylibre.com>'
 
 name 'cap-trap'
-version '0.1.0'
-app '>= 2.4.0'
+version '0.1.1'
+app '>= 2.5.0'
