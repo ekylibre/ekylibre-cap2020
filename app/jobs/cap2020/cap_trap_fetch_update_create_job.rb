@@ -30,6 +30,13 @@ module Cap2020
               sampling_temporal_mode: :period,
               items_attributes: retrieved_data
             )
+
+            alert = sensor.alerts.find_or_create_by(nature: :cap_trap_daily_pest_count_alert)
+            alert.phases.create!(started_at: DateTime.now, level: trap[:alert_daily_pest_count]) unless alert.level == trap[:alert_daily_pest_count]
+            alert = sensor.alerts.find_or_create_by(nature: :battery_life)
+            alert.phases.create!(started_at: DateTime.now, level: trap[:alert_battery_level]) unless alert.level == trap[:alert_battery_level]
+            alert = sensor.alerts.find_or_create_by(nature: :connection_lost)
+            alert.phases.create!(started_at: DateTime.now, level: trap[:alert_connection_lost]) unless alert.level == trap[:alert_connection_lost]
           end
         end
       end

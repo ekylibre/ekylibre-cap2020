@@ -21,6 +21,9 @@ module Cap2020
                 total_count: trap[:comptage][:total_ravageur].to_i,
                 last_count: trap[:comptage][:comptage_nuit].to_i,
                 location: trap[:geometry],
+                alert_daily_pest_count: trap[:comptage][:alerte_comptage_nuit].to_i,
+                alert_battery_level: trap[:alerte][:alerte_batt].to_i,
+                alert_connection_lost:  trap[:alerte][:alerte_emission].to_i,
                 link: body["lien"]
               }
             end
