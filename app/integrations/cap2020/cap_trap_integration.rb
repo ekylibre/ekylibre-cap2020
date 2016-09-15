@@ -17,13 +17,19 @@ module Cap2020
                 id: trap[:properties][:id],
                 sigfox_id: trap[:properties][:id_sigfox],
                 number: trap[:properties][:num_piege],
+
                 pest_variety: trap[:properties][:ravageur],
                 total_count: trap[:comptage][:total_ravageur].to_i,
                 last_count: trap[:comptage][:comptage_nuit].to_i,
+
                 location: trap[:geometry],
+                battery_level: trap[:alerte][:dern_batt].present? && trap[:alerte][:dern_batt].to_f,
+                last_transmission: Maybe(trap[:properties][:dern_em]).to_datetime.or_else(nil),
+
                 alert_daily_pest_count: trap[:comptage][:alerte_comptage_nuit].to_i,
                 alert_battery_level: trap[:alerte][:alerte_batt].to_i,
                 alert_connection_lost:  trap[:alerte][:alerte_emission].to_i,
+
                 link: body["lien"]
               }
             end

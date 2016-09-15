@@ -14,7 +14,9 @@ module Cap2020
             )
             sensor.update!(
               name: "CapTrap #{trap[:number]}-#{trap[:sigfox_id]}",
-              partner_url: trap[:link]
+              partner_url: trap[:link],
+              last_transmission_at: trap[:last_transmission],
+              battery_level: trap[:battery_level]
             )
 
             retrieved_data = []
@@ -31,12 +33,17 @@ module Cap2020
               items_attributes: retrieved_data
             )
 
-            alert = sensor.alerts.find_or_create_by(nature: :cap_trap_daily_pest_count_alert)
-            alert.phases.create!(started_at: DateTime.now, level: trap[:alert_daily_pest_count]) unless alert.level == trap[:alert_daily_pest_count]
-            alert = sensor.alerts.find_or_create_by(nature: :battery_life)
-            alert.phases.create!(started_at: DateTime.now, level: trap[:alert_battery_level]) unless alert.level == trap[:alert_battery_level]
-            alert = sensor.alerts.find_or_create_by(nature: :connection_lost)
-            alert.phases.create!(started_at: DateTime.now, level: trap[:alert_connection_lost]) unless alert.level == trap[:alert_connection_lost]
+            alerts = {
+              daily_pest_count_alert: :alert_daily_pest_count,
+              battery_life: :alert_battery_level,
+              lost_connection: :alert_connection_lost
+            }
+
+            alerts.each do |alert_nature, trap_attribute|
+              alert = sensor.alerts.find_or_create_by(nature: alert_nature)
+              trap_level = trap[trap_attribute]
+              alert.phases.create!(started_at: DateTime.now, level: trap_level) unless alert.level == trap_level
+            end
           end
         end
       end
