@@ -22,7 +22,8 @@ module Cap2020
             retrieved_data = []
 
             # Example until we have the indicators.
-            retrieved_data << { indicator_name: :members_count, value: trap[:last_count] }
+            retrieved_data << { indicator_name: :daily_pest_count, value: trap[:last_count] }
+            retrieved_data << { indicator_name: :weekly_pest_count, value: trap[:weekly_count] }
 
             sensor.analyses.create!(
               retrieval_status: :ok,
@@ -34,14 +35,18 @@ module Cap2020
             )
 
             alerts = {
-              daily_pest_count_alert: :alert_daily_pest_count,
-              battery_life: :alert_battery_level,
-              lost_connection: :alert_connection_lost
+              daily_pest_count: :daily_pest_count,
+              battery_life: :battery_level,
+              lost_connection: :connection_lost,
+              weekly_pest_count: :weekly_pest_count,
+              weather_risk: :weather,
+              area_at_risk: :danger_zone,
+              pest_count_rapid_increase: :pest_spike
             }
 
             alerts.each do |alert_nature, trap_attribute|
               alert = sensor.alerts.find_or_create_by(nature: alert_nature)
-              trap_level = trap[trap_attribute]
+              trap_level = trap[:alerts][trap_attribute]
               alert.phases.create!(started_at: DateTime.now, level: trap_level) unless alert.level == trap_level
             end
           end
