@@ -1,8 +1,0 @@
-# coding: utf-8
-author 'Jérémie Bonal <jbonal@ekylibre.com>'
-
-name 'cap-trap'
-version '1.0.0'
-# Dependent on 2.6.0 since we need the migration AddPartnerUrlToSensors.
-app '>= 2.6.0'
-
