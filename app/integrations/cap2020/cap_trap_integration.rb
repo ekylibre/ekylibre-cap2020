@@ -13,7 +13,7 @@ module Cap2020
           body
             .with_indifferent_access[:features] # Get list of traps
             .map do |trap|
-              timezone_france = "Paris" # Datetimes they send us are France-based and without UTC notation.
+              timezone_france = 'Paris' # Datetimes they send us are France-based and without UTC notation.
               last_transmission = trap[:properties][:dern_em]
               last_transmission &&= last_transmission.to_datetime
               last_transmission &&= Time.use_zone(timezone_france) { Time.zone.local_to_utc(last_transmission) }
@@ -43,7 +43,7 @@ module Cap2020
                   weekly_pest_count: trap[:comptage][:comptage_sept_jours_connecte].to_i
                 },
 
-                link: body["lien"]
+                link: body['lien']
               }
             end
         end
