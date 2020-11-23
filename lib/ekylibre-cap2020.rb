@@ -1,1 +1,1 @@
-require 'ekylibre/cap2020'
+require_relative 'ekylibre/cap2020'

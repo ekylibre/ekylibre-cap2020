@@ -1,17 +1,36 @@
-# coding: utf-8
+# frozen_string_literal: true
 
-$LOAD_PATH.push File.expand_path('../lib', __FILE__)
+require_relative 'lib/ekylibre/cap2020/version'
 
-require 'ekylibre/cap2020/version'
+Gem::Specification.new do |spec|
+  spec.name = 'ekylibre-cap2020'
+  spec.version = Ekylibre::Cap2020::VERSION
+  spec.authors = ["Ekylibre developers"]
+  spec.email = ["dev@ekylibre.com"]
 
-Gem::Specification.new do |s|
-  s.name        = 'ekylibre-cap2020'
-  s.version     = Ekylibre::Cap2020::VERSION
-  s.authors     = ['Jérémie Bonal', 'Alexandre Lécuelle']
-  s.email       = ['jbonal@ekylibre.com', 'alecuelle@ekylibre.com']
-  s.homepage    = 'https://forge.ekylibre.com/projects/cap-trap/repository'
-  s.summary     = "CAP2020 integration: Cap'Trap"
-  s.license     = 'MIT'
+  spec.homepage = 'https://gitlab.com/ekylibre/ekylibre-cap2020'
+  spec.required_ruby_version = ">= 2.6.0"
+  spec.summary = "CAP2020 integration: Cap'Trap"
+  spec.license = "AGPL-3.0-only"
 
-  s.files = Dir['{app,config,lib}/**/*', 'Rakefile', 'README.rdoc']
+  # Prevent pushing this gem to RubyGems.org. To allow pushes either set the 'allowed_push_host'
+  # to allow pushing to a single host or delete this section to allow pushing to any host.
+  if spec.respond_to?(:metadata)
+    spec.metadata["allowed_push_host"] = "https://gems.ekylibre.dev"
+
+    spec.metadata["homepage_uri"] = spec.homepage
+    spec.metadata["source_code_uri"] = "https://www.gitlab.com/ekylibre/ekylibre-cap2020"
+  else
+    raise StandardError.new("RubyGems 2.0 or newer is required to protect against public gem pushes.")
+  end
+
+  spec.files = Dir.glob(%w[app/**/*.rb lib/**/*.rb bin/**/* *.gemspec Gemfile Rakefile *.rdoc])
+
+  spec.require_paths = ["lib"]
+
+  spec.add_dependency 'ekylibre_plugin_system', '~> 0.3.0'
+
+  spec.add_development_dependency "bundler", ">= 1.17"
+  spec.add_development_dependency "minitest", "~> 5.14"
+  spec.add_development_dependency "rake", "~> 13.0"
 end
